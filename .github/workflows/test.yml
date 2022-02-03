@@ -4,8 +4,8 @@ on: push
 env:
   KEY: ${{secrets.TRELLO_KEY}}
   TOKEN: ${{secrets.TRELLO_TOKEN}}
-  SOURCE_LIST_ID: ${{secrets.TRELLO_SOURCE_LIST_ID}}
-  DEST_LIST_ID: ${{secrets.TRELLO_DEST_LIST_ID}}
+  SOURCE_LIST_ID: ${{secrets.SOURCE_LIST_ID}}
+  DEST_LIST_ID: ${{secrets.DEST_LIST_ID}}
   PULL_REQUEST_URL: ${{github.event.pull_request.html_url}}
 
 jobs:
