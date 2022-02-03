@@ -13,13 +13,11 @@ if res.code == "200"
   cards = JSON.parse(res.body)
   card_ids = cards.map{|card| card["id"]}
 else
-  puts res.code
-  puts res.body
-  puts res.message
+  puts "code: #{res.code}, body:#{res.body}. message: #{res.message}"
   return
 end
 
-puts "check attachments"
+puts "check github url"
 card_ids.each do |id|
   card_attachments_path = "/cards/#{id}/attachments"
   card_attachment_url = "#{base_url}#{card_attachments_path}?#{key_token_parmas}"
@@ -29,16 +27,15 @@ card_ids.each do |id|
     attachment["isUpload"] == false && attachment["url"].match(/https:\/\/git/)
   }
   next if attachment == nil
-  puts ENV['PULL_REQUEST_URL']
   if attachment["url"] == ENV['PULL_REQUEST_URL']
-    puts "change list"
+    puts "move list"
     card_update_path = "/cards/#{id}"
     uri = URI.parse("#{base_url}#{card_update_path}?#{key_token_parmas}")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = uri.scheme === "https"
-    puts ENV['DEST_LIST_ID']
     params = "idList=#{ENV['DEST_LIST_ID']}"
     headers = { "Accept" => "application/json" }
     http.put(uri, params, headers)
+    break
   end
 end
