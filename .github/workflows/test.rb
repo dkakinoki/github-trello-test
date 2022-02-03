@@ -5,12 +5,19 @@ require 'json'
 base_url = "https://api.trello.com/1"
 key_token_parmas = "key=#{ENV['KEY']}&token=#{ENV['TOKEN']}"
 
+puts "get card ids"
 list_cards_path = "/lists/#{ENV['SOURCE_LIST_ID']}/cards"
 list_cards_url = "#{base_url}#{list_cards_path}?#{key_token_parmas}"
 res = Net::HTTP.get_response(URI.parse(list_cards_url))
-cards = JSON.parse(res.body)
-card_ids = cards.map{|card| card["id"]}
+if res.code == "200"
+  cards = JSON.parse(res.body)
+  card_ids = cards.map{|card| card["id"]}
+else
+  puts res.body
+  return
+end
 
+puts "change list"
 card_ids.each do |id|
   card_attachments_path = "/cards/#{id}/attachments"
   card_attachment_url = "#{base_url}#{card_attachments_path}?#{key_token_parmas}"
