@@ -36,8 +36,8 @@ card_ids.each do |id|
     uri = URI.parse("#{base_url}#{card_update_path}?#{key_token_parmas}")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = uri.scheme === "https"
-    puts ENV['DIST_LIST_ID']
-    params = "idList=#{ENV['DIST_LIST_ID']}"
+    puts ENV['DEST_LIST_ID']
+    params = "idList=#{ENV['DEST_LIST_ID']}"
     headers = { "Accept" => "application/json" }
     http.put(uri, params, headers)
   end
