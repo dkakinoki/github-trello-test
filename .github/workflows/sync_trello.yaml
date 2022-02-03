@@ -1,9 +1,8 @@
-on:
-  pull_request:
-    branches:
-      - main
-    types: [closed]
-
+on: push
+#  pull_request:
+#    branches:
+#      - main
+#    types: [closed]
 env:
   TRELLO_KEY: ${{secrets.TRELLO_KEY}}
   TRELLO_TOKEN: ${{secrets.TRELLO_TOKEN}}
@@ -13,7 +12,7 @@ env:
 jobs:
   tag:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+#    if: github.event.pull_request.merged == true
     steps:
       - uses: actions/github-script@v5
         with:
