@@ -1,5 +1,10 @@
 name: Sync trello
-on: push
+on:
+  pull_request:
+    branches:
+      - main
+    types: closed
+
 
 env:
   KEY: ${{secrets.TRELLO_KEY}}
@@ -9,8 +14,9 @@ env:
   PULL_REQUEST_URL: ${{github.event.pull_request.html_url}}
 
 jobs:
-  test:
+  tag:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
