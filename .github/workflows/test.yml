@@ -1,5 +1,12 @@
 name: My workflow
 on: [push, pull_request]
+
+env:
+  TRELLO_KEY: ${{secrets.TRELLO_KEY}}
+  TRELLO_TOKEN: ${{secrets.TRELLO_TOKEN}}
+  SOURCE_LIST_ID: ${{secrets.SOURCE_LIST_ID}}
+  DEST_LIST_ID: ${{secrets.DEST_LIST_ID}}
+
 jobs:
   test:
     runs-on: ubuntu-latest
