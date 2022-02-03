@@ -29,6 +29,7 @@ card_ids.each do |id|
     attachment["isUpload"] == false && attachment["url"].match(/https:\/\/git/)
   }
   next if attachment == nil
+  puts ENV['PULL_REQUEST_URL']
   if attachment["url"] == ENV['PULL_REQUEST_URL']
     puts "change list"
     card_update_path = "/cards/#{id}"
