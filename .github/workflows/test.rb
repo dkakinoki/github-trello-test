@@ -13,7 +13,9 @@ if res.code == "200"
   cards = JSON.parse(res.body)
   card_ids = cards.map{|card| card["id"]}
 else
+  puts res.code
   puts res.body
+  puts res.message
   return
 end
 
