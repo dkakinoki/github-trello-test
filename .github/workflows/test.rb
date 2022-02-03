@@ -19,7 +19,7 @@ else
   return
 end
 
-puts "change list"
+puts "check attachments"
 card_ids.each do |id|
   card_attachments_path = "/cards/#{id}/attachments"
   card_attachment_url = "#{base_url}#{card_attachments_path}?#{key_token_parmas}"
@@ -30,6 +30,7 @@ card_ids.each do |id|
   }
   next if attachment == nil
   if attachment["url"] == ENV['PULL_REQUEST_URL']
+    puts "change list"
     card_update_path = "/cards/#{id}"
     uri = URI.parse("#{base_url}#{card_update_path}?#{key_token_parmas}")
     http = Net::HTTP.new(uri.host, uri.port)
