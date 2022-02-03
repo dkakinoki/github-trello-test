@@ -1,4 +1,4 @@
 require 'net/http'
 require 'uri'
-print Net::HTTP.get(URI.parse('https://jsonplaceholder.typicode.com/todos/1'))
-print ENV["TRELLO_TOKEN"]
+url = "https://api.trello.com/1/search?key=#{ENV['TRELLO_KEY']}&token=#{ENV['TRELLO_TOKEN']}&query=test&modelTypes=cards&card_fields=url"
+print Net::HTTP.get(URI.parse(url))
