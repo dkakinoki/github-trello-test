@@ -9,7 +9,7 @@ puts "get card ids"
 list_cards_path = "/lists/#{ENV['SOURCE_LIST_ID']}/cards"
 list_cards_url = "#{base_url}#{list_cards_path}?#{key_token_parmas}"
 res = Net::HTTP.get_response(URI.parse(list_cards_url))
-if res.code == "200"
+if res.code == '200'
   cards = JSON.parse(res.body)
   card_ids = cards.map{|card| card["id"]}
 else
