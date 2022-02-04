@@ -5,7 +5,6 @@ on:
       - main
     types: closed
 
-
 env:
   KEY: ${{secrets.TRELLO_KEY}}
   TOKEN: ${{secrets.TRELLO_TOKEN}}
